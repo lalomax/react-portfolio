@@ -1,5 +1,5 @@
 import jobtrackr from "../assets/jobtrackr.png";
-import contrata from "../assets/contrata.jpg";
+// import contrata from "../assets/contrata.jpg";
 import movement from "../assets/movement.jpg";
 // import zepellin from "../assets/zepellin.png";
 import roundpeople from "../assets/roundpeople.png";
@@ -58,14 +58,14 @@ const Projects = () => {
     //   live: "https://expo.dev/artifacts/eas/kyevpALYMkfMGKYW2zoDUx.apk",
     //   code: "https://github.com/No-Country/s7-27-m-desafioreactnative",
     // },
-    {
-      img: contrata,
-      title: "Contratá",
-      desc: "A platform to connect people with qualified services.",
-      descES: "Plataforma para conectar personas con servicios calificados.",
-      live: "https://contrata.vercel.app/",
-      code: "https://github.com/No-Country/S6-15-M-MERN",
-    },
+    // {
+    //   img: contrata,
+    //   title: "Contratá",
+    //   desc: "A platform to connect people with qualified services.",
+    //   descES: "Plataforma para conectar personas con servicios calificados.",
+    //   live: "https://contrata.vercel.app/",
+    //   code: "https://github.com/No-Country/S6-15-M-MERN",
+    // },
     {
       img: movement,
       title: "Movement",
