@@ -1,7 +1,7 @@
 import HeroImg from "../assets/hero-portrait.webp";
-
 import { useTranslation } from 'react-i18next';
-
+import { useEffect } from 'react';
+import { motion } from 'framer-motion';
 import {
   AiOutlineTwitter,
   AiOutlineFacebook,
@@ -13,75 +13,138 @@ const icons = [
   {
     id: 1,
     link: "https://twitter.com/OrlandoFloresH",
-    icon: <AiOutlineTwitter size={40} />,
-    arialabel:"Find me on x",
+    icon: <AiOutlineTwitter className="w-10 h-10" />,
+    label: "Twitter profile",
+    name: "Twitter"
   },
   {
-    id:2,
+    id: 2,
     link: "https://www.facebook.com/OrlandoFloresHuanca",
-    icon: <AiOutlineFacebook size={40} />,
-    arialabel:"Find me on facebook",
+    icon: <AiOutlineFacebook className="w-10 h-10" />,
+    label: "Facebook profile",
+    name: "Facebook"
   },
   { 
     id: 3,
     link: "https://github.com/lalomax",
-    icon: <AiFillGithub size={40} />,
-    arialabel:"Find me on github",
+    icon: <AiFillGithub className="w-10 h-10" />,
+    label: "GitHub profile",
+    name: "GitHub"
   },
   {
     id: 4,
     link: "https://www.linkedin.com/in/orlando-flores365/",
-    icon: <AiOutlineLinkedin size={40} />,
-    arialabel:"Find me on linkedin",
+    icon: <AiOutlineLinkedin className="w-10 h-10" />,
+    label: "LinkedIn profile",
+    name: "LinkedIn"
   },
 ];
 
+const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+  e.preventDefault();
+  const element = document.getElementById(sectionId);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+};
+
 const Hero = () => {
   const { t } = useTranslation();
+
+  // Smooth scroll for anchor links
+  useEffect(() => {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (this: HTMLElement, e: Event) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (!targetId || targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  }, []);
+
   return (
-    <section className="dark:bg-primaryDark bg-primaryLight px-5  py-32">
-      <div className="container mx-auto grid md:grid-cols-2 items-center justify-center md:justify-between">
-        <div className="hero-info pb-5 md:pb-0">
-          <h1 className="font-pacifico text-4xl lg:text-6xl lg:leading-normal">
-            {t('Hi')}<br />{t('Iam')} <span className="text-accent">O</span>rlando <br />
-            {t('role')}
+    <section 
+      id="home"
+      className="min-h-screen flex items-center dark:bg-gradient-to-br from-primaryDark to-gray-900 bg-gradient-to-br from-primaryLight to-gray-100 px-5 py-20 md:py-32"
+    >
+      <div className="container mx-auto grid md:grid-cols-2 items-center gap-12">
+        <motion.div 
+          className="hero-info max-w-2xl"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h1 className="font-pacifico text-4xl md:text-5xl lg:text-6xl lg:leading-tight mb-6">
+            <span className="block">{t('Hi')}</span>
+            <span className="block">
+              {t('Iam')} <span className="text-accent dark:text-accent">O</span>rlando
+            </span>
+            <span className="block text-2xl md:text-3xl font-normal mt-2">
+              {t('role')}
+            </span>
           </h1>
 
-          <p className="py-5 ">
+          <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
             {t('Hero-description')}
           </p>
 
-          <div className="flex py-5 gap-2 ">
-            {/* Display array icons */}
-            {icons.map(({id, link, icon, arialabel }) => (
-              <a
+          <div className="flex flex-wrap gap-4 mb-8">
+            {icons.map(({ id, link, icon, label, name }) => (
+              <motion.a
                 key={id}
                 href={link}
-                className="inline-block text-accent hover:text-slate-600 dark:hover:text-slate-400"
                 target="_blank"
-                aria-label={arialabel}
+                rel="noopener noreferrer"
+                aria-label={label}
+                title={name}
+                className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white dark:bg-gray-800 text-accent hover:bg-accent hover:text-white dark:hover:bg-accent dark:hover:text-primaryDark transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
               >
                 {icon}
-              </a>
+              </motion.a>
             ))}
-    
           </div>
 
-          <a
-            href="/#projects"
-            className=" btn bg-accent  border-2 border-accent text-black hover:text-white  px-6 py-3 hover:bg-primaryDark"
+          <motion.a
+            href="#projects"
+            onClick={(e) => scrollToSection(e, 'projects')}
+            className="inline-block bg-accent hover:bg-accent/90 text-primaryDark font-medium py-3 px-8 rounded-full transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-accent focus:ring-opacity-50"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
           >
             {t('See-Projects')}
-          </a>
-        </div>
+          </motion.a>
+        </motion.div>
 
-        <div className="hero-img">
-          <img
-            src={HeroImg}
-            alt="coding illustration"
-            className="lgw-[80%] ml-auto"
-          />
-        </div>
+        <motion.div 
+          className="hidden md:flex justify-center items-center"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <div className="relative">
+            <div className="absolute -inset-4 bg-accent/20 rounded-full blur-xl opacity-70"></div>
+            <div className="relative">
+              <img
+                src={HeroImg}
+                alt="Orlando Flores - Web Developer"
+                width={500}
+                height={500}
+                className="rounded-full border-4 border-accent/20 shadow-2xl w-full max-w-md"
+                loading="eager"
+              />
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
