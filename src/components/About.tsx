@@ -28,7 +28,7 @@ const About = () => {
           <Link
             to="https://drive.google.com/file/d/1o2oOyqgRIoAvrSlCks5KXhiaLFbN4HXs/view" 
             target="_blank"
-            className="inline-block btn bg-accent  border-2 border-accent text-black hover:text-white  px-6 py-3 my-4 hover:bg-primaryDark"
+            className="inline-block bg-accent hover:bg-accent/90 text-primaryDark font-medium py-3 px-8 rounded-full transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-accent focus:ring-opacity-50 cursor-pointer my-4"
           >
             {t('Resume')}
           </Link>
