@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import ExternalLinkModal from './ExternalLinkModal';
+import heroPortrait from '../assets/hero-portrait.webp';
 import {
   AiOutlineTwitter,
   AiOutlineFacebook,
@@ -171,9 +172,11 @@ const Hero = () => {
             <div className="absolute -inset-4 bg-accent/20 rounded-full blur-xl opacity-70"></div>
             <div className="relative">
               <div className="w-full max-w-md aspect-square bg-gray-200 dark:bg-gray-700 rounded-full border-4 border-accent/20 shadow-2xl overflow-hidden">
-                <div className="w-full h-full flex items-center justify-center text-gray-400 dark:text-gray-500">
-                  <span className="text-4xl">👨‍💻</span>
-                </div>
+                <img 
+                  src={heroPortrait} 
+                  alt="Orlando Flores" 
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           </div>
