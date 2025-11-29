@@ -18,6 +18,13 @@
  "ContactDesc" : "I am currently open for a fulltime frontend developer role. If you want to discuss about that feel free to email me or call me.",
  "Email": "Email",
  "copyright": "All rights reserved",
+ "modal": {
+   "title": "Heads up! You're leaving this site",
+   "warning": "You're about to visit an external website:",
+   "trustNote": "Make sure you trust this site before continuing.",
+   "stayButton": "Stay on this page",
+   "continueButton": "Continue to site"
+ },
  "Live": "Live",
  "Code": "Code",
 "EmailCopied": "Email copied",

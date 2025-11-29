@@ -1,7 +1,7 @@
-import HeroImg from "../assets/hero-portrait.webp";
 import { useTranslation } from 'react-i18next';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import ExternalLinkModal from './ExternalLinkModal';
 import {
   AiOutlineTwitter,
   AiOutlineFacebook,
@@ -40,48 +40,85 @@ const icons = [
   },
 ];
 
-const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
-  e.preventDefault();
-  const element = document.getElementById(sectionId);
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth' });
-  }
-};
-
 const Hero = () => {
   const { t } = useTranslation();
+  const [modalState, setModalState] = useState<{
+    isOpen: boolean;
+    url: string;
+  }>({
+    isOpen: false,
+    url: '',
+  });
 
-  // Smooth scroll for anchor links
+  const handleConfirmNavigation = () => {
+    window.open(modalState.url, '_blank', 'noopener,noreferrer');
+    setModalState({ isOpen: false, url: '' });
+  };
+
+  const handleCancelNavigation = () => {
+    setModalState({ isOpen: false, url: '' });
+  };
+
+  // Handle all link clicks
   useEffect(() => {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (this: HTMLElement, e: Event) {
+    const handleLinkClick = (e: Event) => {
+      const target = e.target as HTMLElement;
+      const anchor = target.closest('a');
+      
+      if (!anchor) return;
+      
+      const href = anchor.getAttribute('href');
+      if (!href) return;
+      
+      // Handle internal anchor links
+      if (href.startsWith('#')) {
         e.preventDefault();
-        const targetId = this.getAttribute('href');
-        if (!targetId || targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
+        const targetElement = document.querySelector(href);
         if (targetElement) {
           targetElement.scrollIntoView({
             behavior: 'smooth',
             block: 'start'
           });
         }
-      });
-    });
+        return;
+      }
+      
+      // Handle external links
+      if (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) {
+        e.preventDefault();
+        setModalState({ isOpen: true, url: href });
+        return;
+      }
+    };
+    
+    // Add click listeners to all links
+    document.addEventListener('click', handleLinkClick);
+    
+    return () => {
+      document.removeEventListener('click', handleLinkClick);
+    };
+  
   }, []);
 
   return (
-    <section 
-      id="home"
-      className="min-h-screen flex items-center dark:bg-gradient-to-br from-primaryDark to-gray-900 bg-gradient-to-br from-primaryLight to-gray-100 px-5 py-20 md:py-32"
-    >
-      <div className="container mx-auto grid md:grid-cols-2 items-center gap-12">
-        <motion.div 
-          className="hero-info max-w-2xl"
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-        >
+    <>
+      <ExternalLinkModal
+        isOpen={modalState.isOpen}
+        onConfirm={handleConfirmNavigation}
+        onCancel={handleCancelNavigation}
+        url={modalState.url}
+      />
+      <section 
+        id="home"
+        className="min-h-screen flex items-center dark:bg-gradient-to-br from-primaryDark to-gray-900 bg-gradient-to-br from-primaryLight to-gray-100 px-5 py-20 md:py-32"
+      >
+        <div className="container mx-auto grid md:grid-cols-2 items-center gap-12">
+          <motion.div 
+            className="hero-info max-w-2xl"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
           <h1 className="font-pacifico text-4xl md:text-5xl lg:text-6xl lg:leading-tight mb-6">
             <span className="block">{t('Hi')}</span>
             <span className="block">
@@ -116,8 +153,7 @@ const Hero = () => {
 
           <motion.a
             href="#projects"
-            onClick={(e) => scrollToSection(e, 'projects')}
-            className="inline-block bg-accent hover:bg-accent/90 text-primaryDark font-medium py-3 px-8 rounded-full transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-accent focus:ring-opacity-50"
+            className="inline-block bg-accent hover:bg-accent/90 text-primaryDark font-medium py-3 px-8 rounded-full transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-accent focus:ring-opacity-50 cursor-pointer"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
           >
@@ -134,19 +170,17 @@ const Hero = () => {
           <div className="relative">
             <div className="absolute -inset-4 bg-accent/20 rounded-full blur-xl opacity-70"></div>
             <div className="relative">
-              <img
-                src={HeroImg}
-                alt="Orlando Flores - Web Developer"
-                width={500}
-                height={500}
-                className="rounded-full border-4 border-accent/20 shadow-2xl w-full max-w-md"
-                loading="eager"
-              />
+              <div className="w-full max-w-md aspect-square bg-gray-200 dark:bg-gray-700 rounded-full border-4 border-accent/20 shadow-2xl overflow-hidden">
+                <div className="w-full h-full flex items-center justify-center text-gray-400 dark:text-gray-500">
+                  <span className="text-4xl">👨‍💻</span>
+                </div>
+              </div>
             </div>
           </div>
         </motion.div>
       </div>
     </section>
+    </>
   );
 };
 

@@ -21,5 +21,12 @@
   "Live": "En vivo",
   "Code": "Código",
   "EmailCopied": "Correo copiado",
-  "PhoneCopied": "Teléfono copiado"
+  "PhoneCopied": "Teléfono copiado",
+  "modal": {
+    "title": "¡Atención! Estás por salir del sitio",
+    "warning": "Estás a punto de visitar un sitio web externo:",
+    "trustNote": "Asegúrate de confiar en este sitio antes de continuar.",
+    "stayButton": "Quedarme en la página",
+    "continueButton": "Continuar al sitio"
+  }
 }
