@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import AboutImg from "../assets/about-orland.jpg";
 import { useTranslation } from 'react-i18next';
+import { motion } from 'framer-motion';
 
 const About = () => {
   const { t } = useTranslation();
@@ -34,13 +35,25 @@ const About = () => {
           </Link>
         </div>
 
-        <div className="about-img">
-          <img
-            src={AboutImg}
-            alt="coding illustration"
-            className="lgw-[80%] md:ml-auto"
-          />
-        </div>
+        <motion.div 
+          className="hidden md:flex justify-center items-center"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <div className="relative">
+            <div className="absolute -inset-4 bg-accent/20 rounded-full blur-xl opacity-70"></div>
+            <div className="relative">
+              <div className="w-full max-w-md aspect-square bg-gray-200 dark:bg-gray-700 rounded-full border-4 border-accent/20 shadow-2xl overflow-hidden">
+                <img 
+                  src={AboutImg}
+                  alt="Orlando Flores" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
