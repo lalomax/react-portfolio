@@ -8,6 +8,7 @@ import {
   AiOutlineFacebook,
   AiFillGithub,
   AiOutlineLinkedin,
+  AiFillGitlab,
 } from "react-icons/ai";
 
 const icons = [
@@ -25,6 +26,13 @@ const icons = [
     label: "Facebook profile",
     name: "Facebook"
   },
+  {
+    id: 4,
+    link: "https://www.linkedin.com/in/orlando-flores365/",
+    icon: <AiOutlineLinkedin className="w-10 h-10" />,
+    label: "LinkedIn profile",
+    name: "LinkedIn"
+  },
   { 
     id: 3,
     link: "https://github.com/lalomax",
@@ -33,12 +41,14 @@ const icons = [
     name: "GitHub"
   },
   {
-    id: 4,
-    link: "https://www.linkedin.com/in/orlando-flores365/",
-    icon: <AiOutlineLinkedin className="w-10 h-10" />,
-    label: "LinkedIn profile",
-    name: "LinkedIn"
+    id: 5,
+    link: "https://gitlab.com/lalomax",
+    icon: <AiFillGitlab className="w-10 h-10" />,
+    label: "GitLab profile",
+    name: "GitLab"
   },
+  
+  
 ];
 
 const Hero = () => {

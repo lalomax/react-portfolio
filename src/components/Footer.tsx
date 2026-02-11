@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { AiOutlineTwitter, AiOutlineFacebook, AiFillGithub, AiOutlineLinkedin } from 'react-icons/ai';
+import { AiOutlineTwitter, AiOutlineFacebook, AiFillGithub, AiOutlineLinkedin, AiFillGitlab } from 'react-icons/ai';
 
 const socialLinks = [
   {
@@ -24,13 +24,21 @@ const socialLinks = [
     label: "GitHub profile",
     name: "GitHub"
   },
-  {
-    id: 4,
+    {
+    id: 5,
     link: "https://www.linkedin.com/in/orlando-flores365/",
     icon: <AiOutlineLinkedin className="w-6 h-6" />,
     label: "LinkedIn profile",
     name: "LinkedIn"
   },
+  {
+    id: 4,
+    link: "https://gitlab.com/lalomax",
+    icon: <AiFillGitlab className="w-6 h-6" />,
+    label: "GitLab profile",
+    name: "GitLab"
+  },
+
 ];
 
 const Footer = () => {
