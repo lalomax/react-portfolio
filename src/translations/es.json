@@ -23,6 +23,10 @@
   "Code": "Código",
   "EmailCopied": "Correo copiado",
   "PhoneCopied": "Teléfono copiado",
+  "PhotoCredit": "Fotos por",
+  "Photographer": "Galiel Gabriel",
+  "Built with": "Construido con",
+  "using React, TypeScript, and Tailwind CSS": "usando React, TypeScript, y Tailwind CSS",
   "modal": {
     "title": "¡Atención! Estás por salir del sitio",
     "warning": "Estás a punto de visitar un sitio web externo:",

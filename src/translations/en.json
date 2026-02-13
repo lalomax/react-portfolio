@@ -29,5 +29,9 @@
  "Live": "Live",
  "Code": "Code",
 "EmailCopied": "Email copied",
-"PhoneCopied": "Phone copied"
+"PhoneCopied": "Phone copied",
+"PhotoCredit": "Photos by",
+"Photographer": "Galiel Gabriel",
+"Built with": "Built with",
+"using React, TypeScript, and Tailwind CSS": "using React, TypeScript, and Tailwind CSS"
 }

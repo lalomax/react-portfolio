@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { AiOutlineTwitter, AiOutlineFacebook, AiFillGithub, AiOutlineLinkedin, AiFillGitlab } from 'react-icons/ai';
+import { AiOutlineTwitter, AiOutlineFacebook, AiFillGithub, AiOutlineLinkedin, AiFillGitlab, AiOutlineInstagram } from 'react-icons/ai';
 
 const socialLinks = [
   {
@@ -103,6 +103,20 @@ const Footer = () => {
             <p>&copy; {currentYear} Lalomax - {t('copyright')}</p>
             <p className="mt-2 text-xs">
               {t('Built with')} <span className="text-accent">❤️</span> {t('using React, TypeScript, and Tailwind CSS')}
+            </p>
+            <p className="mt-3 text-xs">
+              {t('PhotoCredit')}{' '}
+              <motion.a
+                href="https://www.instagram.com/galiel_gabriel/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent hover:text-accent-light transition-colors duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <AiOutlineInstagram className="inline w-4 h-4 mr-1" />
+                {t('Photographer')}
+              </motion.a>
             </p>
           </div>
         </motion.div>
