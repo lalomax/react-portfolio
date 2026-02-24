@@ -1,1 +1,10 @@
-VITE_GA_TRACKING_ID=G-XXXXXXXXXX // Google Analytics Tracking ID
+# Environment Variables for Frontend
+# Copy this file to .env and fill in your actual values
+
+# Google Analytics Tracking ID
+VITE_GA_TRACKING_ID=G-XXXXXXXXXX 
+
+# Backend API URL (optional - will use fallback if not set)
+# For development: http://localhost:3001/api
+# For production: https://your-backend-url.railway.app/api
+VITE_API_URL=https://your-backend-url.railway.app/api

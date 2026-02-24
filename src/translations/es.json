@@ -27,6 +27,10 @@
   "Photographer": "Galiel Gabriel",
   "Built with": "Construido con",
   "using React, TypeScript, and Tailwind CSS": "usando React, TypeScript, y Tailwind CSS",
+  "ChatWithMe": "Chat conmigo",
+  "ChatWelcome": "¡Hola! ¿En qué puedo ayudarte?",
+  "TypeMessage": "Escribe tu mensaje...",
+  "ChatError": "Lo siento, ha ocurrido un error. Por favor, inténtalo de nuevo.",
   "modal": {
     "title": "¡Atención! Estás por salir del sitio",
     "warning": "Estás a punto de visitar un sitio web externo:",

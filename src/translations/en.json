@@ -33,5 +33,9 @@
 "PhotoCredit": "Photos by",
 "Photographer": "Galiel Gabriel",
 "Built with": "Built with",
-"using React, TypeScript, and Tailwind CSS": "using React, TypeScript, and Tailwind CSS"
+"using React, TypeScript, and Tailwind CSS": "using React, TypeScript, and Tailwind CSS",
+"ChatWithMe": "Chat with me",
+"ChatWelcome": "Hi! How can I help you?",
+"TypeMessage": "Type your message...",
+"ChatError": "Sorry, an error occurred. Please try again."
 }
