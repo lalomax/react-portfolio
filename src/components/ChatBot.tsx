@@ -178,23 +178,23 @@ const ChatBot: React.FC = () => {
 
             {/* Input */}
             <div className="p-4 border-t border-gray-700">
-              <div className="flex space-x-2">
+              <div className="flex space-x-2 min-w-0">
                 <input
                   type="text"
                   value={inputMessage}
                   onChange={(e) => setInputMessage(e.target.value)}
                   onKeyPress={handleKeyPress}
                   placeholder={t('TypeMessage') || 'Escribe tu mensaje...'}
-                  className="flex-1 bg-gray-700 text-white px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"
+                  className="flex-1 min-w-0 bg-gray-700 text-white px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent text-sm sm:text-base"
                   disabled={isLoading}
                 />
                 <button
                   onClick={handleSendMessage}
                   disabled={isLoading || !inputMessage.trim()}
-                  className="bg-accent hover:bg-accent-light disabled:bg-gray-600 text-white p-2 rounded-lg transition-colors duration-300"
+                  className="bg-accent hover:bg-accent-light disabled:bg-gray-600 text-white p-2 rounded-lg transition-colors duration-300 flex-shrink-0"
                   aria-label="Send message"
                 >
-                  <AiOutlineSend size={20} />
+                  <AiOutlineSend size={16} className="sm:size-20" />
                 </button>
               </div>
             </div>
