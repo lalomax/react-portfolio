@@ -44,11 +44,11 @@ code {
 .scrollbutton {
   position: fixed;  
   /* width: 100%;  */
-  left: calc(100% - 50px);
-  bottom: 40px; 
+  left: 20px; /* Move to left side to avoid overlap completely */
+  bottom: 70px; /* Move up higher to avoid overlap with chat button */
+  z-index: 40; /* Lower z-index than chat button (50) */
   height: 20px; 
   font-size: 3rem; 
-  z-index: 1; 
   cursor: pointer; 
   /* color: green;  */
 }
