@@ -88,17 +88,17 @@ const ChatBot: React.FC = () => {
   };
 
   return (
-    <div className="fixed bottom-8 right-4 z-50">
+    <div className="fixed bottom-8 right-4 z-50 sm:right-4">
       {/* Chat Button */}
       {!isOpen && (
         <motion.button
           onClick={() => setIsOpen(true)}
-          className="bg-accent hover:bg-accent-light text-white p-4 rounded-full shadow-lg transition-colors duration-300"
+          className="bg-accent hover:bg-accent-light text-white p-3 sm:p-4 rounded-full shadow-lg transition-colors duration-300"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           aria-label="Open chat"
         >
-          <AiOutlineMessage size={24} />
+          <AiOutlineMessage size={20} />
         </motion.button>
       )}
 
@@ -110,7 +110,7 @@ const ChatBot: React.FC = () => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
             transition={{ duration: 0.3 }}
-            className="bg-primaryDark border border-gray-700 rounded-lg shadow-2xl w-96 h-[500px] flex flex-col"
+            className="bg-primaryDark border border-gray-700 rounded-lg shadow-2xl fixed bottom-20 right-4 left-4 sm:left-auto sm:w-96 w-auto h-[60vh] sm:h-[500px] max-h-[600px] flex flex-col"
           >
             {/* Header */}
             <div className="bg-accent text-white p-4 rounded-t-lg flex justify-between items-center">
@@ -140,21 +140,33 @@ const ChatBot: React.FC = () => {
                   transition={{ duration: 0.2 }}
                   className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
-                  <div
-                    className={`max-w-[80%] p-3 rounded-lg ${
-                      message.role === 'user'
-                        ? 'bg-accent text-white'
-                        : 'bg-gray-700 text-gray-200'
-                    }`}
-                  >
-                    <p className="text-sm whitespace-pre-wrap">{message.content}</p>
-                    <p className="text-xs opacity-70 mt-1">
-                      {message.timestamp.toLocaleTimeString([], {
-                        hour: '2-digit',
-                        minute: '2-digit'
-                      })}
-                    </p>
-                  </div>
+                    <div 
+                      className={`max-w-[80%] p-3 rounded-lg ${
+                        message.role === 'user'
+                          ? 'bg-accent text-white'
+                          : 'bg-gray-700 text-gray-200'
+                      }`}
+                    >
+                      <div 
+                        className="text-sm whitespace-pre-wrap"
+                        dangerouslySetInnerHTML={{ 
+                          __html: message.content
+                            .replace(/&/g, '&amp;')
+                            .replace(/</g, '&lt;')
+                            .replace(/>/g, '&gt;')
+                            .replace(/&amp;(https?:\/\/[^\s]+)/g, '$1')
+                            .replace(/(https?:\/\/[^\s]+)/g, 
+                              '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 underline">$1</a>'
+                            )
+                        }}
+                      />
+                      <p className="text-xs opacity-70 mt-1">
+                        {message.timestamp.toLocaleTimeString([], {
+                          hour: '2-digit',
+                          minute: '2-digit'
+                        })}
+                      </p>
+                    </div>
                 </motion.div>
               ))}
               
