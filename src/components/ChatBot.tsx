@@ -147,19 +147,7 @@ const ChatBot: React.FC = () => {
                           : 'bg-gray-700 text-gray-200'
                       }`}
                     >
-                      <div 
-                        className="text-sm whitespace-pre-wrap"
-                        dangerouslySetInnerHTML={{ 
-                          __html: message.content
-                            .replace(/&/g, '&amp;')
-                            .replace(/</g, '&lt;')
-                            .replace(/>/g, '&gt;')
-                            .replace(/&amp;(https?:\/\/[^\s]+)/g, '$1')
-                            .replace(/(https?:\/\/[^\s]+)/g, 
-                              '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 underline">$1</a>'
-                            )
-                        }}
-                      />
+                      <p className="text-sm whitespace-pre-wrap break-words">{message.content}</p>
                       <p className="text-xs opacity-70 mt-1">
                         {message.timestamp.toLocaleTimeString([], {
                           hour: '2-digit',
