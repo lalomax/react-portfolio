@@ -13,6 +13,53 @@ const ChatBot: React.FC = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { t } = useTranslation();
 
+  // Function to parse and render URLs and email addresses as clickable anchors
+  const renderMessageWithLinks = (text: string) => {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    const emailRegex = /([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/g;
+    
+    // First split by URLs, then process each part for emails
+    const urlParts = text.split(urlRegex);
+    
+    return urlParts.map((urlPart, urlIndex) => {
+      if (urlPart.match(urlRegex)) {
+        // Render URL
+        return (
+          <a
+            key={`url-${urlIndex}`}
+            href={urlPart}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent hover:text-accent-light underline break-all"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {urlPart}
+          </a>
+        );
+      }
+      
+      // Process for emails in non-URL parts
+      const emailParts = urlPart.split(emailRegex);
+      
+      return emailParts.map((emailPart, emailIndex) => {
+        if (emailPart.match(emailRegex)) {
+          // Render email
+          return (
+            <a
+              key={`email-${urlIndex}-${emailIndex}`}
+              href={`mailto:${emailPart}`}
+              className="text-accent hover:text-accent-light underline break-all"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {emailPart}
+            </a>
+          );
+        }
+        return emailPart;
+      });
+    });
+  };
+
   // Initialize ChatService to trigger debug logs
   React.useEffect(() => {
     new ChatService();
@@ -147,7 +194,12 @@ const ChatBot: React.FC = () => {
                           : 'bg-gray-700 text-gray-200'
                       }`}
                     >
-                      <p className="text-sm whitespace-pre-wrap break-words">{message.content}</p>
+                      <p className="text-sm whitespace-pre-wrap break-words">
+                        {message.role === 'assistant' 
+                          ? renderMessageWithLinks(message.content)
+                          : message.content
+                        }
+                      </p>
                       <p className="text-xs opacity-70 mt-1">
                         {message.timestamp.toLocaleTimeString([], {
                           hour: '2-digit',
