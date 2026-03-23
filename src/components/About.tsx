@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import AboutImg from "../assets/about-orland.jpg";
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
+import OptimizedImage from './OptimizedImage';
 
 const About = () => {
   const { t } = useTranslation();
@@ -45,10 +46,11 @@ const About = () => {
             <div className="absolute -inset-4 bg-accent/20 rounded-full blur-xl opacity-70"></div>
             <div className="relative">
               <div className="w-full max-w-md aspect-square bg-gray-200 dark:bg-gray-700 rounded-full border-4 border-accent/20 shadow-2xl overflow-hidden">
-                <img 
+                <OptimizedImage 
                   src={AboutImg}
                   alt="Orlando Flores" 
-                  className="w-full h-full object-cover"
+                  priority={true}
+                  className="w-full h-full"
                 />
               </div>
             </div>
