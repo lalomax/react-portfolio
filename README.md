@@ -29,7 +29,7 @@
 </div>
 
 
-![Untitled](https://github.com/user-attachments/assets/99716f33-39b0-4a1a-8d4a-96d27e08fa61)
+<img width="1261" height="907" alt="image" src="https://github.com/user-attachments/assets/01cd3b5e-34f2-4811-8940-a68976fef6e1" />
 
 
 <!-- ABOUT THE PROJECT -->
