@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { FaArrowCircleUp } from 'react-icons/fa';
-// import { Button } from './Styles'; 
+import { FaArrowUp } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 const ScrollButton = () => {
 
@@ -19,20 +19,23 @@ const ScrollButton = () => {
 	const scrollToTop = () => {
 		window.scrollTo({
 			top: 0,
-			behavior: 'auto'
-			/* you can also use 'auto' behaviour 
-				in place of 'smooth' */
+			behavior: 'smooth'
 		});
 	};
 
 	window.addEventListener('scroll', toggleVisible);
 
 	return (
-		<button className='scrollbutton text-indigo-600 ' style={{ display: visible ? 'inline' : 'none' }}>
-			<FaArrowCircleUp onClick={scrollToTop}
-				 />
-		</button>
+		<motion.button 
+			className={`fixed left-4 bottom-8 z-40 bg-accent hover:bg-accent-light text-white p-3 sm:p-4 rounded-full shadow-lg transition-colors duration-300 ${visible ? 'block' : 'hidden'}`}
+			onClick={scrollToTop}
+			whileHover={{ scale: 1.1 }}
+			whileTap={{ scale: 0.95 }}
+			aria-label="Scroll to top"
+		>
+			<FaArrowUp size={20} />
+		</motion.button>
 	);
 }
 
-export default ScrollButton; 
+export default ScrollButton;

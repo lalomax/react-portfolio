@@ -188,19 +188,19 @@ const ChatBot: React.FC = () => {
                   className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                     <div 
-                      className={`max-w-[80%] p-3 rounded-lg ${
+                      className={`max-w-[80%] px-4 py-3 rounded-2xl shadow-sm border border-gray-600 bg-gray-700 text-gray-100 ${
                         message.role === 'user'
-                          ? 'bg-accent text-white'
-                          : 'bg-gray-700 text-gray-200'
+                          ? 'rounded-br-sm'
+                          : 'rounded-bl-sm'
                       }`}
                     >
-                      <p className="text-sm whitespace-pre-wrap break-words">
+                      <p className="text-sm whitespace-pre-wrap break-words leading-relaxed min-h-[1.25rem]">
                         {message.role === 'assistant' 
                           ? renderMessageWithLinks(message.content)
                           : message.content
                         }
                       </p>
-                      <p className="text-xs opacity-70 mt-1">
+                      <p className="text-xs mt-1.5 opacity-70">
                         {message.timestamp.toLocaleTimeString([], {
                           hour: '2-digit',
                           minute: '2-digit'
@@ -216,8 +216,8 @@ const ChatBot: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   className="flex justify-start"
                 >
-                  <div className="bg-gray-700 text-gray-200 p-3 rounded-lg">
-                    <div className="flex space-x-1">
+                  <div className="bg-gray-700 text-gray-100 px-4 py-3 rounded-2xl rounded-bl-sm border border-gray-600 shadow-sm">
+                    <div className="flex space-x-1 h-5 items-center">
                       <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
                       <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
                       <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
